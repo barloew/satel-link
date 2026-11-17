@@ -1,9 +1,9 @@
 # Satel Link Companion
 
-<img src="https://raw.githubusercontent.com/barloew/satel_link_companion/main/custom_components/satel_link_companion/brand/icon.png" alt="Satel Link Companion" width="96" align="right" />
+<img src="https://raw.githubusercontent.com/barloew/satel-link/main/custom_components/satel_link_companion/brand/icon.png" alt="Satel Link Companion" width="96" align="right" />
 
-[![Validate](https://github.com/barloew/satel_link_companion/actions/workflows/validate.yml/badge.svg)](https://github.com/barloew/satel_link_companion/actions/workflows/validate.yml)
-[![Release](https://img.shields.io/github/v/release/barloew/satel_link_companion?display_name=tag)](https://github.com/barloew/satel_link_companion/releases)
+[![Validate](https://github.com/barloew/satel-link/actions/workflows/validate.yml/badge.svg)](https://github.com/barloew/satel-link/actions/workflows/validate.yml)
+[![Release](https://img.shields.io/github/v/release/barloew/satel-link?display_name=tag)](https://github.com/barloew/satel-link/releases)
 
 **Bring your Satel Integra alarm and Home Assistant closer together.** Satel Link Companion sits
 on top of the Satel base integration you already use and adds the things it can't do on its own —
@@ -28,6 +28,6 @@ without ever opening a second connection to your panel.
 Requires **Home Assistant 2025.7+** and a working Satel base integration (`satel_integra` or
 `ha_satel_integra_ext`).
 
-See the [README](https://github.com/barloew/satel_link_companion) to get started and the
-[Advanced guide](https://github.com/barloew/satel_link_companion/blob/main/Advanced.md) for the
+See the [README](https://github.com/barloew/satel-link) to get started and the
+[Advanced guide](https://github.com/barloew/satel-link/blob/main/Advanced.md) for the
 Satel-side checklist and the finer details.

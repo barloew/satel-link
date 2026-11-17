@@ -1,9 +1,9 @@
 # Satel Link Companion
 
-<img src="https://raw.githubusercontent.com/barloew/satel_link_companion/main/custom_components/satel_link_companion/brand/icon.png" alt="Satel Link Companion" width="120">
+<img src="https://raw.githubusercontent.com/barloew/satel-link/main/custom_components/satel_link_companion/brand/icon.png" alt="Satel Link Companion" width="120">
 
-[![Validate](https://github.com/barloew/satel_link_companion/actions/workflows/validate.yml/badge.svg)](https://github.com/barloew/satel_link_companion/actions/workflows/validate.yml)
-[![Release](https://img.shields.io/github/v/release/barloew/satel_link_companion?display_name=tag)](https://github.com/barloew/satel_link_companion/releases)
+[![Validate](https://github.com/barloew/satel-link/actions/workflows/validate.yml/badge.svg)](https://github.com/barloew/satel-link/actions/workflows/validate.yml)
+[![Release](https://img.shields.io/github/v/release/barloew/satel-link?display_name=tag)](https://github.com/barloew/satel-link/releases)
 [![HACS Custom](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
 
 **Bring your Satel Integra alarm and Home Assistant closer together: use any Home Assistant
@@ -71,7 +71,7 @@ direct connection — now all in one place.
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=barloew&repository=satel_link_companion&category=integration)
 
 1. In HACS, add this repository as a custom repository
-   (`https://github.com/barloew/satel_link_companion`, category *Integration*).
+   (`https://github.com/barloew/satel-link`, category *Integration*).
 2. Install **Satel Link Companion** and restart Home Assistant.
 3. Add it under *Settings → Devices & Services → Add Integration → Satel Link Companion*.
 
