@@ -88,7 +88,7 @@ Before you touch Satel Link Companion, create and configure the partitions, zone
 From the integration page you **add** links, roller shutters and master panels (each its own
 device), and use the options menu for discovery and the guard-time settings:
 
-- **Map Satel Integra system structure** — the one-off scan (cached afterwards).
+- **Map Satel Integra system structure** — the one-off scan (cached afterward).
 - **Link a sensor** — pick a Home Assistant source sensor, a switchable output and the zone that
   follows it. It validates the combination and lets you choose when the zone is actuated.
 - **HA roller shutter** — bundle an up/down output pair into one `cover`.
@@ -104,7 +104,7 @@ Each link can actuate its Satel zone in three ways:
   alarm, even when disarmed. Best for heat / smoke / gas / moisture hazards.
 - **Via partition arming** — a breached sensor violates the zone, which triggers an alarm only
   once the partition is armed. Best for burglary protection — and the way to get "virtual zone"
-  behaviour on a plain ETHM-1.
+  behavior on a plain ETHM-1.
 - **Via partition arming, with entry/exit delay** — as above, but breach status is blocked during
   a configurable entry/exit delay. Best for entry/exit doors.
 
@@ -112,7 +112,7 @@ A minimum on-time keeps brief pulses (a flickering PIR) visible to the panel.
 
 ### Devices
 
-Everything you add is its own device, organised to mirror your Satel layout:
+Everything you add is its own device, organized to mirror your Satel layout:
 
 - The **hub** takes the name and area of your Satel base central device.
 - Each **link** takes the name and area of the base zone it drives, and nests under a
@@ -189,7 +189,7 @@ returns to rest, a fresh violation starts the entry delay; disarm within it and 
 restart while armed is treated like an arming moment, so a reboot can never instantly alarm an
 entry zone.
 
-**Other behaviours.** *Continuously* forwards always; *via partition arming* forwards only while
+**Other behaviors.** *Continuously* forwards always; *via partition arming* forwards only while
 the partition is armed. A minimum on-time stretches brief pulses so the panel doesn't miss them.
 *Invert* corrects an output polarity the protocol can't read. When a partition goes to
 *triggered*, the companion looks back over the guard-time window to report which zones were
