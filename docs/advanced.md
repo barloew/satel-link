@@ -1,6 +1,6 @@
 # Satel Link Companion — Advanced guide
 
-The [README](README.md) covers what Satel Link Companion is for and how to install it. This
+The [README](../README.md) covers what Satel Link Companion is for and how to install it. This
 guide is the detail: how it works, what to set on the Satel side, and how each feature behaves
 at the edges. You don't need any of it to get started, but it's here when you want it.
 
@@ -70,7 +70,7 @@ everything after it smooth. This is aimed mainly at the **link** feature.
   to that output; arming from a master needs a user with rights on exactly those partitions.
   Create a dedicated Home Assistant user rather than sharing your own code.
 
-See **[SATEL_TYPES.md](SATEL_TYPES.md)** for the full list of zone functions, wiring types and
+See **[Satel object types](satel-types.md)** for the full list of zone functions, wiring types and
 output functions.
 
 ### In the base integration
@@ -158,7 +158,7 @@ Use a dedicated Satel user with rights on exactly the master's partitions.
 Satel Link Companion fires events you can build automations on — `arm_blocked`, `breach` and
 `arm_failed` — and each is mirrored as a diagnostic sensor (**Last breach**, **Last arm blocked**,
 **Last arm failed**). It also offers a `satel_link_companion.check_arm` service that returns the
-zones blocking an arm for a partition. See **[EVENTS.md](EVENTS.md)** for the full payloads and
+zones blocking an arm for a partition. See **[Events](events.md)** for the full payloads and
 example automations.
 
 ## Verifying a link

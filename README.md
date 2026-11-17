@@ -1,116 +1,76 @@
+<img src="https://raw.githubusercontent.com/barloew/satel-link/main/custom_components/satel_link_companion/brand/icon.png" alt="Satel Link Companion" width="96" align="right">
+
 # Satel Link Companion
 
-<img src="https://raw.githubusercontent.com/barloew/satel-link/main/custom_components/satel_link_companion/brand/icon.png" alt="Satel Link Companion" width="120">
+[![Release][release-badge]][release-url]
+[![HACS][hacs-badge]][hacs-url]
+[![Validate][validate-badge]][validate-url]
 
-[![Validate](https://github.com/barloew/satel-link/actions/workflows/validate.yml/badge.svg)](https://github.com/barloew/satel-link/actions/workflows/validate.yml)
-[![Release](https://img.shields.io/github/v/release/barloew/satel-link?display_name=tag)](https://github.com/barloew/satel-link/releases)
-[![HACS Custom](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
+Virtual zones and a master alarm panel for Satel Integra in Home Assistant.
 
-**Bring your Satel Integra alarm and Home Assistant closer together: use any Home Assistant
-sensor as a real Satel zone, control your whole system from one HomeKit-friendly panel, and
-automate the rest.**
+Extends your existing Satel integration. It uses that integration's connection, so the panel's single network connection stays free.
 
-Satel Link Companion sits on top of the Satel base integration you already use and adds the
-things it can't do on its own. It never opens a second connection to your panel — the Satel
-network module allows only one — so it works entirely through your existing integration.
+## Features
 
-## Is this for you?
-
-**① You have a Satel Integra with an ETHM-1 module (not the Plus) — so you have no "virtual zones".**
-Normally that means Home Assistant can *read* your Satel zones, but can't turn a Home
-Assistant sensor into a real Satel one. Satel Link Companion gives you exactly that: pick any
-Home Assistant sensor — a Zigbee door contact, a Z-Wave smoke or CO alarm, a motion sensor —
-and it becomes a genuine Satel zone, supervised by the panel and armed together with its
-partition. (ETHM-1 Plus owners can use this too.)
-
-**② You use HomeKit and want one alarm tile for your whole house.**
-HomeKit only controls one Satel partition per accessory, so with several partitions you're
-stuck arming them one at a time. Satel Link Companion gives you a single **master alarm panel**
-that arms and disarms all the partitions you choose as one unit — with its own set of
-partitions for Home, Away and Night — and it's fully HomeKit-compatible.
-
-**③ You want smarter arming, notifications and automations.**
-Before it arms, it checks every partition and tells you — all at once — which doors or windows
-are still open, so you're not fixing one and then discovering the next. It fires **events** you
-can build automations on (an alarm went off; an arm was blocked; an arm failed) and mirrors
-them as sensors, so a WhatsApp or Sonos notification is easy to wire up.
-
-**④ You just want to control a roller shutter.**
-If your shutters run on Satel output pairs, Satel Link Companion bundles each up/down pair into
-a single Home Assistant **cover** you can open, close and stop like any other.
-
-### Why not just connect the sensor to Satel directly?
-
-Suppose you let a Home Assistant sensor switch a Satel output, and you link a Satel zone to that
-output. That zone would be a **24-hour** zone — and a 24-hour zone goes straight into alarm the
-moment it's tripped, whether the alarm is armed or not.
-
-- For a **hazard sensor** (smoke, CO, gas, water) that's exactly right — you always want it to go
-  off, at home or away.
-- For **burglary** it's no good — a motion sensor or a door would trip the alarm while you're
-  sitting on the couch.
-
-Satel Link Companion does the smart part in Home Assistant: it only forwards a burglary sensor to
-the panel **after you've armed that partition** (optionally with an entry/exit delay), so it acts
-like a normal alarm zone. Hazard sensors you simply set to “always”, and they work exactly like a
-direct connection — now all in one place.
+- **Virtual zones:** turns any Home Assistant sensor, such as a Zigbee door contact or a Z-Wave smoke detector, into a real Satel zone. Useful with an ETHM-1 module, which has no virtual zones of its own.
+- **Arm-aware forwarding:** burglary sensors trip the panel only when their partition is armed, with optional entry and exit delays. Hazard sensors forward at all times.
+- **Master alarm panel:** arms and disarms several partitions as one, with separate partition sets for Home, Away and Night. Works with HomeKit.
+- **Pre-arm check:** lists every open door or window across all partitions before arming.
+- **Events and sensors:** for alarms, blocked arms and failed arms, ready for notifications and automations.
+- **Roller shutters:** combines a Satel up/down output pair into one cover.
 
 ## Requirements
 
-- Home Assistant **2025.7 or newer**
-- A Satel **INTEGRA** or **INTEGRA Plus** panel with an **ETHM-1** or **ETHM-1 Plus** module,
-  with *Integration* enabled
-- A working Satel base integration —
-  [`satel_integra`](https://www.home-assistant.io/integrations/satel_integra/) (core) or
-  `ha_satel_integra_ext`
+- Home Assistant 2025.7 or later
+- Satel INTEGRA or INTEGRA Plus with an ETHM-1 or ETHM-1 Plus module, with integration enabled
+- A working Satel integration: [`satel_integra`](https://www.home-assistant.io/integrations/satel_integra/) (core) or `ha_satel_integra_ext`
 
 ## Installation
 
-### HACS (recommended)
+### HACS
 
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=barloew&repository=satel-link&category=integration)
+[![Open in HACS][my-ha-badge]][my-ha-url]
 
-1. In HACS, add this repository as a custom repository
-   (`https://github.com/barloew/satel-link`, category *Integration*).
-2. Install **Satel Link Companion** and restart Home Assistant.
-3. Add it under *Settings → Devices & Services → Add Integration → Satel Link Companion*.
+Or add it manually:
+
+1. In HACS, open the menu and select **Custom repositories**.
+2. Add `https://github.com/barloew/satel-link` with category **Integration**.
+3. Download **Satel Link Companion** and restart Home Assistant.
 
 ### Manual
 
-Copy `custom_components/satel_link_companion/` into your Home Assistant
-`config/custom_components/` folder and restart.
+Copy `custom_components/satel_link_companion` from the [latest release][release-url] to your `config/custom_components` folder and restart Home Assistant.
 
-## Setup
+## Configuration
 
-Setup adopts your existing Satel base integration automatically. From the integration page you
-then add what you need — each becomes its own device:
+Before your first link, check the Satel-side settings in the [DLOADX checklist](docs/advanced.md).
 
-- **Link a sensor** — turn a Home Assistant sensor into a Satel zone
-- **Roller shutter** — bundle an up/down output pair into one cover
-- **Master panel** — one alarm tile for several partitions
+1. Go to **Settings → Devices & services → Add integration** and select **Satel Link Companion**. It detects your Satel integration automatically.
+2. Run **Map Satel Integra system structure** once to read the panel layout.
+3. From the integration page, add what you need. Each becomes its own device:
+   - **Link a sensor:** a Home Assistant sensor as a Satel zone
+   - **Roller shutter:** an output pair as one cover
+   - **Master panel:** one alarm panel for several partitions
 
-There's a one-off **“Map Satel Integra system structure”** scan first, so it knows your panel's
-layout.
+## Documentation
 
-> **Before your first link:** a few things need to be set correctly on the Satel side (output
-> type, zone wiring, user rights). The **[Advanced guide](Advanced.md)** has a short checklist —
-> worth two minutes before you start.
+- [Advanced guide](docs/advanced.md): DLOADX checklist, master panel, verifying a link, fail-safe behavior
+- [Events](docs/events.md): event payloads and example automations
+- [Satel object types](docs/satel-types.md): zone functions, wiring types and output functions
 
-## Learn more
+## Safety
 
-- **[Advanced guide](Advanced.md)** — the DLOADX checklist, the master panel in depth, how to
-  verify a link, and how links behave at the edges (fail-silent, entry/exit)
-- **[Events & automation](EVENTS.md)** — event payloads and example automations
-- **[Satel object types](SATEL_TYPES.md)** — zone functions, wiring types and output functions,
-  taken from the Satel manuals
-
-## A note on safety
-
-This drives a real alarm system. It's built to fail safe — if a sensor drops out or Home
-Assistant restarts, a linked zone returns to rest rather than raising a false alarm — but always
-confirm the behaviour against your own hardware before you rely on it.
+This integration controls a real alarm system. It fails safe: if a sensor drops out or Home Assistant restarts, a linked zone returns to rest instead of raising an alarm. Verify the behavior with your own hardware before relying on it.
 
 ## License
 
-Released under the [MIT License](LICENSE). Not affiliated with SATEL sp. z o.o. “Satel” and
-“Integra” are trademarks of their respective owner.
+[MIT](LICENSE). Not affiliated with SATEL sp. z o.o.
+
+[release-badge]: https://img.shields.io/github/v/release/barloew/satel-link
+[release-url]: https://github.com/barloew/satel-link/releases
+[hacs-badge]: https://img.shields.io/badge/HACS-Custom-41BDF5.svg
+[hacs-url]: https://github.com/hacs/integration
+[validate-badge]: https://github.com/barloew/satel-link/actions/workflows/validate.yml/badge.svg
+[validate-url]: https://github.com/barloew/satel-link/actions/workflows/validate.yml
+[my-ha-badge]: https://my.home-assistant.io/badges/hacs_repository.svg
+[my-ha-url]: https://my.home-assistant.io/redirect/hacs_repository/?owner=barloew&repository=satel-link&category=integration

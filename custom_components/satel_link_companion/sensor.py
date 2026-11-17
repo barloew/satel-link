@@ -1,6 +1,6 @@
 """Satel Link Companion — diagnostic sensors surfacing the bus events (module D).
 
-The event engine fires three events on the bus (see EVENTS.md). They are useful
+The event engine fires three events on the bus (see docs/events.md). They are useful
 for automations but invisible in the UI, so each is mirrored by a diagnostic
 sensor whose state is the time of the last such event and whose attributes carry
 that event's payload:
