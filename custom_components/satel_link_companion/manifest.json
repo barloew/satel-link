@@ -4,6 +4,9 @@
   "after_dependencies": [
     "satel_integra"
   ],
+  "categories": [
+    "security_safety.alarm_systems"
+  ],
   "codeowners": [
     "@barloew"
   ],
